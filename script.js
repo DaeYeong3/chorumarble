@@ -146,19 +146,38 @@ function renderPlayers() {
 
     const piece = document.createElement("div");
     piece.classList.add("player");
-   
-    if (index === currentPlayerIndex) piece.classList.add("current");
+
+    if (index === currentPlayerIndex) {
+      piece.classList.add("current");
+    }
+
     piece.style.background = player.color;
     piece.innerText = player.name;
 
+    // 🔥 같은 칸 플레이어들
+    const sameCellPlayers = players.filter(p => p.position === player.position);
+    const count = sameCellPlayers.length;
+    const order = sameCellPlayers.indexOf(player);
+
+    if (count > 1) {
+      const radius = 20; // 원 반지름 (조절 가능)
+      const angle = (2 * Math.PI / count) * order;
+
+      const x = radius * Math.cos(angle);
+      const y = radius * Math.sin(angle);
+
+      piece.style.transform = `translate(${x}px, ${y}px)`;
+    }
+
     cell.appendChild(piece);
-    if (players.length > 0) {
-      currentPlayerDisplay.innerText =
-        `현재 턴 : ${players[currentPlayerIndex].name}`;
+  });
+
+  if (players.length > 0) {
+    currentPlayerDisplay.innerText =
+      `현재 턴 : ${players[currentPlayerIndex].name}`;
+  }
 }
 
-  });
-}
 
 function showPopup(text) {
   popupContent.innerText = text;
