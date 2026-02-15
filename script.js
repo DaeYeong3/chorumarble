@@ -1,3 +1,30 @@
+const cellTexts = [
+  "START",
+  "한잔",
+  "벌칙",
+  "패스",
+  "두잔",
+  "노래",
+  "벌칙",
+  "한잔",
+  "댄스",
+  "두잔",
+  "벌칙",
+  "패스",
+  "한잔",
+  "노래",
+  "벌칙",
+  "두잔",
+  "한잔",
+  "댄스",
+  "벌칙",
+  "패스",
+  "두잔",
+  "노래",
+  "벌칙",
+  "GOAL"
+];
+
 const board = document.getElementById("board");
 const popup = document.getElementById("popup");
 const popupContent = document.getElementById("popupContent");
@@ -20,7 +47,8 @@ function createBoard() {
 
     if (pathIndex !== -1) {
       cell.dataset.index = pathIndex;
-      cell.innerText = pathIndex;
+      cell.innerText = cellTexts[pathIndex];
+
     } else {
       cell.style.visibility = "hidden";
     }
