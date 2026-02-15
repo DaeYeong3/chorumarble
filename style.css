@@ -3,8 +3,14 @@ body {
   background: #1e1e1e;
   color: white;
   font-family: Arial, sans-serif;
-  text-align: center;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  height: 100vh;
 }
+
 
 #gameContainer {
   position: relative;
@@ -12,14 +18,14 @@ body {
 }
 
 #board {
-  width: 560px;
-  height: 560px;
-  margin: 0 auto;
+  width: 70vmin;
+  height: 70vmin;
   display: grid;
   grid-template-columns: repeat(7, 1fr);
   grid-template-rows: repeat(7, 1fr);
-  gap: 4px;
+  gap: 0.5vmin;
 }
+
 
 
 
@@ -39,8 +45,8 @@ body {
 
 
 .player {
-  width: 40px;
-  height: 40px;
+  width: 6vmin;
+  height: 6vmin;
   border-radius: 50%;
   position: absolute;
 
@@ -48,16 +54,13 @@ body {
   justify-content: center;
   align-items: center;
 
-  font-size: 10px;
+  font-size: 1.5vmin;
   font-weight: bold;
   color: white;
 
-  text-align: center;
-  padding: 2px;
-  box-sizing: border-box;
-
-  border: 2px solid white;
+  border: 0.3vmin solid white;
 }
+
 
 
 .current {
