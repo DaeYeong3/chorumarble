@@ -111,20 +111,39 @@ function rollDice() {
     return;
   }
 
-  let dice = Math.floor(Math.random() * 6) + 1;
+  const diceDisplay = document.getElementById("diceDisplay");
 
-  showPopup(`${player.name} : ${dice}`);
+  let rollCount = 0;
+  const maxRolls = 15; // 애니메이션 횟수
+  const interval = 50; // 속도(ms)
 
-  player.position += dice;
+  const rolling = setInterval(() => {
+    const randomNum = Math.floor(Math.random() * 6) + 1;
+    diceDisplay.innerText = randomNum;
+    rollCount++;
 
-  if (player.position >= totalCells) {
-    player.finished = true;
-    player.position = totalCells - 1;
-    showPopup(`${player.name} 완주!`);
-  }
+    if (rollCount >= maxRolls) {
+      clearInterval(rolling);
 
-  renderPlayers();
-  nextTurn();
+      const finalDice = Math.floor(Math.random() * 6) + 1;
+      diceDisplay.innerText = finalDice;
+
+      setTimeout(() => {
+        showPopup(`${player.name} : ${finalDice}`);
+
+        player.position += finalDice;
+
+        if (player.position >= totalCells) {
+          player.finished = true;
+          player.position = totalCells - 1;
+          showPopup(`${player.name} 완주!`);
+        }
+
+        renderPlayers();
+        nextTurn();
+      }, 300);
+    }
+  }, interval);
 }
 
 function nextTurn() {
