@@ -123,3 +123,12 @@ button {
 #popup {
   z-index: 999;
 }
+
+#diceDisplay {
+  font-size: 60px;
+  margin: 15px;
+  height: 80px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
