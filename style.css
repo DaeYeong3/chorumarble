@@ -82,3 +82,17 @@ button {
   from { transform: scale(0.5); }
   to { transform: scale(1); }
 }
+#currentPlayerDisplay {
+  font-size: 24px;
+  margin-bottom: 10px;
+  font-weight: bold;
+}
+
+#board {
+  position: relative;
+  z-index: 1;
+}
+
+#popup {
+  z-index: 999;
+}
