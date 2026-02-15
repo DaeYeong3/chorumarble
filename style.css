@@ -18,13 +18,13 @@ body {
 }
 
 #board {
-  width: 70vmin;
-  height: 70vmin;
+  height: 85vh;
+  aspect-ratio: 1 / 1;
   display: grid;
   grid-template-columns: repeat(7, 1fr);
   grid-template-rows: repeat(7, 1fr);
-  gap: 0.5vmin;
 }
+
 
 
 
