@@ -9,31 +9,30 @@ let totalCells = 24;
 
 function createBoard() {
   const size = 7;
-  const total = size * size;
 
-  for (let i = 0; i < total; i++) {
+  for (let i = 0; i < size * size; i++) {
+    const cell = document.createElement("div");
+    cell.classList.add("cell");
+
     const row = Math.floor(i / size);
     const col = i % size;
 
-    // 테두리만 생성
     if (
       row === 0 ||
       row === size - 1 ||
       col === 0 ||
       col === size - 1
     ) {
-      const cell = document.createElement("div");
-      cell.classList.add("cell");
       cell.dataset.index = getBorderIndex(i);
-
-      if (cell.dataset.index !== "-1") {
-        cell.innerText = cell.dataset.index;
-      }
-
-      board.appendChild(cell);
+      cell.innerText = cell.dataset.index;
+    } else {
+      cell.style.visibility = "hidden"; // 👈 내부칸 숨김
     }
+
+    board.appendChild(cell);
   }
 }
+
 
 function getBorderIndex(i) {
   let map = [];
