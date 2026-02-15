@@ -1,6 +1,7 @@
 const board = document.getElementById("board");
 const popup = document.getElementById("popup");
 const popupContent = document.getElementById("popupContent");
+const currentPlayerDisplay = document.getElementById("currentPlayerDisplay");
 
 let players = [];
 let currentPlayerIndex = 0;
@@ -101,6 +102,11 @@ function renderPlayers() {
     if (index === currentPlayerIndex) piece.classList.add("current");
     piece.style.background = player.color;
     cell.appendChild(piece);
+    if (players.length > 0) {
+      currentPlayerDisplay.innerText =
+        `현재 턴 : ${players[currentPlayerIndex].name}`;
+}
+
   });
 }
 
