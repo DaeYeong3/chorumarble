@@ -8,23 +8,30 @@ let currentPlayerIndex = 0;
 let totalCells = 24;
 
 function createBoard() {
-  for (let i = 0; i < 49; i++) {
-    const cell = document.createElement("div");
-    cell.classList.add("cell");
+  const size = 7;
+  const total = size * size;
 
+  for (let i = 0; i < total; i++) {
+    const row = Math.floor(i / size);
+    const col = i % size;
+
+    // 테두리만 생성
     if (
-      i < 7 ||
-      i % 7 === 0 ||
-      i % 7 === 6 ||
-      i >= 42
+      row === 0 ||
+      row === size - 1 ||
+      col === 0 ||
+      col === size - 1
     ) {
+      const cell = document.createElement("div");
+      cell.classList.add("cell");
       cell.dataset.index = getBorderIndex(i);
+
       if (cell.dataset.index !== "-1") {
         cell.innerText = cell.dataset.index;
       }
-    }
 
-    board.appendChild(cell);
+      board.appendChild(cell);
+    }
   }
 }
 
