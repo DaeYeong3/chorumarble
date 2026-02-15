@@ -146,8 +146,11 @@ function renderPlayers() {
 
     const piece = document.createElement("div");
     piece.classList.add("player");
+   
     if (index === currentPlayerIndex) piece.classList.add("current");
     piece.style.background = player.color;
+    piece.innerText = player.name;
+
     cell.appendChild(piece);
     if (players.length > 0) {
       currentPlayerDisplay.innerText =
