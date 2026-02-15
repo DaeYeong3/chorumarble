@@ -5,28 +5,24 @@ const currentPlayerDisplay = document.getElementById("currentPlayerDisplay");
 
 let players = [];
 let currentPlayerIndex = 0;
-let totalCells = 24;
+let totalCells = 24; // 7x7 테두리는 24칸
+
 
 function createBoard() {
   const size = 7;
+  const path = getPathIndexes(size);
 
   for (let i = 0; i < size * size; i++) {
     const cell = document.createElement("div");
     cell.classList.add("cell");
 
-    const row = Math.floor(i / size);
-    const col = i % size;
+    const pathIndex = path.indexOf(i);
 
-    if (
-      row === 0 ||
-      row === size - 1 ||
-      col === 0 ||
-      col === size - 1
-    ) {
-      cell.dataset.index = getBorderIndex(i);
-      cell.innerText = cell.dataset.index;
+    if (pathIndex !== -1) {
+      cell.dataset.index = pathIndex;
+      cell.innerText = pathIndex;
     } else {
-      cell.style.visibility = "hidden"; // 👈 내부칸 숨김
+      cell.style.visibility = "hidden";
     }
 
     board.appendChild(cell);
@@ -34,16 +30,33 @@ function createBoard() {
 }
 
 
-function getBorderIndex(i) {
-  let map = [];
 
-  for (let c = 0; c < 7; c++) map.push(c);
-  for (let r = 1; r < 6; r++) map.push(r * 7 + 6);
-  for (let c = 6; c >= 0; c--) map.push(42 + c);
-  for (let r = 5; r > 0; r--) map.push(r * 7);
+function getPathIndexes(size) {
+  const path = [];
 
-  return map.indexOf(i);
+  // 위쪽 →
+  for (let i = 0; i < size; i++) {
+    path.push(i);
+  }
+
+  // 오른쪽 ↓
+  for (let i = 1; i < size; i++) {
+    path.push(i * size + (size - 1));
+  }
+
+  // 아래쪽 ←
+  for (let i = size - 2; i >= 0; i--) {
+    path.push((size - 1) * size + i);
+  }
+
+  // 왼쪽 ↑
+  for (let i = size - 2; i > 0; i--) {
+    path.push(i * size);
+  }
+
+  return path;
 }
+
 
 function addPlayer() {
   const nameInput = document.getElementById("playerName");
